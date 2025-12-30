@@ -6,24 +6,15 @@ import React from "react";
 // const mergeChainSets = (c1: Chain[], c2: Chain[]) => uniqBy(c1.concat(c2), "name");
 
 export default function() {
-  const [chains, setChains] = React.useState<Chain[]>([
+  const [chains, setChains] = React.useState<Chain[]>([ 
     {
-      name: "Ethereum Classic",
-      network: "mainnet",
-      rpc: ["https://www.ethercluster.com/etc"],
-    },
-    {
-      name: "Matic",
-      network: "mainnet",
-      rpc: ["https://rpc-mainnet.matic.network"],
-    },
-    {
-      name: "Matic - Mumbai",
-      network: "testnet",
-      rpc: ["https://rpc-mumbai.matic.today"],
-    },
+      name: "eth1",
+      network: "8888",
+      rpc: ["localhost:8546"],
+    }
   ]);
 
+return [chains, setChains];
   // uncomment once we add 'chain list provider' concept. This list blows.
 
   // useEffect(() => {
@@ -46,5 +37,5 @@ export default function() {
   //   }
   // }, [chains]);
 
-  return [chains, setChains];
+  
 }

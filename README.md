@@ -59,6 +59,34 @@ git clone https://github.com/xops/expedition.git && cd expedition && npm install
 ```
 
 <!-- example usage, screen shots, demos -->
+
+#### Modify built-in chain node configurations (useChainList.ts) [新增]
+
+To customize the built-in chain nodes displayed in the explorer, modify the useChainList.ts file. This file contains configurations for node display and connection, including three key fields:
+name: The display name of the node in the browser (customizable, e.g., "My Ethereum Node")
+network: The network type of the node (customizable, e.g., "private-mainnet")
+rpc: The RPC port access address of the node (ensure the port is accessible to the client terminal, e.g., "http://192.168.1.100:8545")
+
+##### Steps to modify:
+
+- Locate the useChainList.ts file in the project source code.
+- Find the chain configuration object (usually an array of chain items).
+- Update the name, network, and rpc fields according to your needs.
+- Save the file and restart the explorer with npm start for changes to take effect.
+
+#### Compatibility Fix: Node.js v17+ Encryption Error [新增]
+
+When running the project with Node.js v17 or higher, you may encounter the error digital envelope routines:unsupported (caused by incompatible encryption algorithms between Node.js v17+ and old webpack/React scaffolding).
+**Solution**: Modify the scripts section in the project's package.json file to add legacy OpenSSL provider configuration:
+
+```json
+"start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start", 
+"build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
+```
+
+- Note for Mac/Linux users: Replace set with **export** (e.g., "start": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts start")
+- After modification, re-run npm start to launch the project normally.
+
 ## Usage
 
 ### Start the explorer
@@ -86,6 +114,7 @@ REACT_APP_ETH_RPC_URL=https://www.ethercluster.com/kotti npm start
 ```
 
 <!-- template just leave alone  -->
+
 ## Roadmap
 See the [open issues](https://github.com/etclabscore/xops/issues) for a list of proposed features (and known issues).
 
